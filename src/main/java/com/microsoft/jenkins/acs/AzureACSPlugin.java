@@ -45,8 +45,8 @@ public class AzureACSPlugin extends Plugin {
     }
 
     public static String normalizeContainerSerivceType(String type) {
-        if (Constants.AI_KUBERNATES.equalsIgnoreCase(type)) {
-            return Constants.AI_KUBERNATES;
+        if (Constants.AI_KUBERNETES.equalsIgnoreCase(type)) {
+            return Constants.AI_KUBERNETES;
         } else if (Constants.AI_DCOS.equalsIgnoreCase(type)) {
             return Constants.AI_DCOS;
         } else if (Constants.AI_SWARM.equalsIgnoreCase(type)) {

@@ -94,7 +94,7 @@ public final class Constants {
      */
     public static final String AI_ACS = "ACS";
     public static final String AI_SWARM = "Swarm";
-    public static final String AI_KUBERNATES = "Kubernates";
+    public static final String AI_KUBERNETES = "Kubernetes";
     public static final String AI_DCOS = "DCOS";
     public static final String AI_CUSTOM = "Custom";
     public static final String AI_AKS = "AKS";
