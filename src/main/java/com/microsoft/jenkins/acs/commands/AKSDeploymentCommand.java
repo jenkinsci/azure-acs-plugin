@@ -53,16 +53,15 @@ public class AKSDeploymentCommand
                     azureClient.subscriptionId(),
                     getResourceGroupName(),
                     Constants.AKS_PROVIDER,
-                    Constants.AKS_RESOURCE_TYPE,
-                    getContainerServiceName(),
-                    "");
-            // Cannot use #get(resourceGroup, provider, type, name) because it uses #list() internally which won't
-            // return the properties.
+                    "accessProfiles",
+                    "clusterAdmin",
+                    String.format("%s/%s", Constants.AKS_RESOURCE_TYPE, getContainerServiceName()));
+
             GenericResource resource = azureClient.genericResources().getById(id);
             Object properties = resource.properties();
             try {
                 String userConfig = DeployHelper.getProperty(
-                        properties, "accessProfiles.clusterUser.kubeConfig", String.class);
+                        properties, "kubeConfig", String.class);
                 if (StringUtils.isBlank(userConfig)) {
                     throw new IllegalStateException("Null user kubeconfig returned from Azure");
                 }
