@@ -6,6 +6,7 @@
 
 package com.microsoft.jenkins.acs;
 
+import hudson.AbortException;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
@@ -55,9 +56,17 @@ public class ACSDeploymentBuilder extends Builder implements SimpleBuildStep {
         this.context.executeCommands();
 
         if (context.getLastCommandState().isError()) {
-            listener.getLogger().println(
-                    Messages.ACSDeploymentBuilder_endWithErrorState(context.getCommandState()));
             run.setResult(Result.FAILURE);
+            // NB: The perform(AbstractBuild<?,?>, Launcher, BuildListener) method inherited from
+            //     BuildStepCompatibilityLayer will delegate the call to SimpleBuildStep#perform when possible,
+            //     and always return true (continue the followed build steps) regardless of the Run#getResult.
+            //     We need to terminate the execution explicitly with an exception.
+            //
+            // see BuildStep#perform
+            //     Using the return value to indicate success/failure should
+            //     be considered deprecated, and implementations are encouraged
+            //     to throw {@link AbortException} to indicate a failure.
+            throw new AbortException(Messages.ACSDeploymentBuilder_endWithErrorState(context.getCommandState()));
         } else {
             listener.getLogger().println(Messages.ACSDeploymentBuilder_finished());
         }
