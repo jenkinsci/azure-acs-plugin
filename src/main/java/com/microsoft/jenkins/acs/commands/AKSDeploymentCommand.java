@@ -15,6 +15,7 @@ import com.microsoft.jenkins.acs.util.Constants;
 import com.microsoft.jenkins.acs.util.DeployHelper;
 import com.microsoft.jenkins.azurecommons.core.credentials.TokenCredentialData;
 import hudson.FilePath;
+import hudson.model.Item;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
 
@@ -25,7 +26,8 @@ public class AKSDeploymentCommand
         extends KubernetesDeploymentCommandBase<AKSDeploymentCommand.IAKSDeploymentCommandData> {
     @Override
     public void execute(IAKSDeploymentCommandData context) {
-        final TokenCredentialData token = AzureHelper.getToken(context.getAzureCredentialsId());
+        final Item owner = context.getJobContext().getOwner();
+        final TokenCredentialData token = AzureHelper.getToken(owner, context.getAzureCredentialsId());
 
         AKSDeployWorker deployer = new AKSDeployWorker();
         deployer.setToken(token);

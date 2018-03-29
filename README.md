@@ -1,6 +1,8 @@
-# Azure Container Service Plugin
+# Azure Container Service (AKS) Plugin
 
-A Jenkins Plugin to deploy configurations to Azure Container Service (ACS) with the following orchestrator:
+A Jenkins Plugin to deploy configurations to Azure Container Service (AKS).
+
+It also supports deployment to the legacy Azure Container Service (ACS) with the following orchestrator:
 
 * [Kubernetes](https://kubernetes.io/)
 * [DC/OS](https://dcos.io/) with [Marathon](https://mesosphere.github.io/marathon/)
@@ -17,7 +19,7 @@ It provides the following main functionality:
 
 ## Pre-requirements
 
-* An ACS cluster with the supported orchestrator, or an AKS cluster
+* AKS cluster, or an ACS cluster with the supported orchestrator 
    * [Azure Container Service with Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/)
    * [Azure Container Service with DC/OS and Swarm](https://docs.microsoft.com/en-us/azure/container-service/dcos-swarm/)
 * A Azure service principal that can be used to manage the ACS cluster

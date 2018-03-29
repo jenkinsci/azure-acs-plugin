@@ -493,7 +493,8 @@ public class ACSDeploymentContext extends BaseCommandContext
             return model;
         }
 
-        public FormValidation doVerifyConfiguration(@QueryParameter String azureCredentialsId,
+        public FormValidation doVerifyConfiguration(@AncestorInPath Item owner,
+                                                    @QueryParameter String azureCredentialsId,
                                                     @QueryParameter String resourceGroupName,
                                                     @QueryParameter String containerService,
                                                     @QueryParameter String sshCredentialsId) {
@@ -507,7 +508,7 @@ public class ACSDeploymentContext extends BaseCommandContext
             }
 
             try {
-                Azure azureClient = AzureHelper.buildClient(azureCredentialsId);
+                Azure azureClient = AzureHelper.buildClient(owner, azureCredentialsId);
 
                 ResourceGroup group = azureClient.resourceGroups().getByName(resourceGroupName);
                 if (group == null) {
@@ -526,7 +527,7 @@ public class ACSDeploymentContext extends BaseCommandContext
                     if (resource == null) {
                         return FormValidation.error(Messages.ACSDeploymentContext_containerServiceNotFound());
                     }
-                    return FormValidation.ok(Messages.ACSDeploymentContext_validationSuccess(Messages.AKS()));
+                    return FormValidation.ok(Messages.ACSDeploymentContext_validationSuccess());
                 } else {
                     ContainerService container = azureClient
                             .containerServices()
@@ -550,14 +551,15 @@ public class ACSDeploymentContext extends BaseCommandContext
                     } catch (Exception e) {
                         return FormValidation.error(Messages.ACSDeploymentContext_sshFailure(e.getMessage()));
                     }
-                    return FormValidation.ok(Messages.ACSDeploymentContext_validationSuccess(Messages.ACS()));
+                    return FormValidation.ok(Messages.ACSDeploymentContext_validationSuccess());
                 }
             } catch (Exception e) {
                 return FormValidation.error(Messages.ACSDeploymentContext_validationError(e.getMessage()));
             }
         }
 
-        public ListBoxModel doFillResourceGroupNameItems(@QueryParameter String azureCredentialsId) {
+        public ListBoxModel doFillResourceGroupNameItems(@AncestorInPath Item owner,
+                                                         @QueryParameter String azureCredentialsId) {
             ListBoxModel model = new ListBoxModel();
 
             if (StringUtils.isBlank(azureCredentialsId)
@@ -567,7 +569,7 @@ public class ACSDeploymentContext extends BaseCommandContext
             }
 
             try {
-                Azure azureClient = AzureHelper.buildClient(azureCredentialsId);
+                Azure azureClient = AzureHelper.buildClient(owner, azureCredentialsId);
                 for (ResourceGroup resourceGroup : azureClient.resourceGroups().list()) {
                     model.add(resourceGroup.name());
                 }
@@ -584,9 +586,9 @@ public class ACSDeploymentContext extends BaseCommandContext
             return model;
         }
 
-        public ListBoxModel doFillContainerServiceItems(
-                @QueryParameter String azureCredentialsId,
-                @QueryParameter String resourceGroupName) {
+        public ListBoxModel doFillContainerServiceItems(@AncestorInPath Item owner,
+                                                        @QueryParameter String azureCredentialsId,
+                                                        @QueryParameter String resourceGroupName) {
             ListBoxModel model = new ListBoxModel();
 
             if (StringUtils.isBlank(azureCredentialsId)
@@ -600,7 +602,7 @@ public class ACSDeploymentContext extends BaseCommandContext
             }
 
             try {
-                Azure azureClient = AzureHelper.buildClient(azureCredentialsId);
+                Azure azureClient = AzureHelper.buildClient(owner, azureCredentialsId);
 
                 PagedList<ContainerService> containerServices =
                         azureClient.containerServices().listByResourceGroup(resourceGroupName);

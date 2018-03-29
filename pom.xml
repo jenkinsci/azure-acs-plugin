@@ -19,8 +19,8 @@
         <jenkins-test-harness.version>2.1</jenkins-test-harness.version>
 
         <azuresdk.version>1.3.0</azuresdk.version>
-        <azure-credentials-plugin.version>1.4.0</azure-credentials-plugin.version>
-        <azure-commons.version>0.2.3</azure-commons.version>
+        <azure-credentials-plugin.version>1.6.0</azure-credentials-plugin.version>
+        <azure-commons.version>0.2.5</azure-commons.version>
         <kubernetes-cd.version>0.1.4</kubernetes-cd.version>
     </properties>
 

@@ -21,6 +21,7 @@ import com.microsoft.jenkins.azurecommons.command.ICommand;
 import com.microsoft.jenkins.azurecommons.core.credentials.TokenCredentialData;
 import com.microsoft.jenkins.azurecommons.telemetry.AppInsightsUtils;
 import hudson.FilePath;
+import hudson.model.Item;
 import hudson.model.TaskListener;
 import jenkins.security.MasterToSlaveCallable;
 
@@ -34,9 +35,10 @@ public class GetContainerServiceInfoCommand
     @Override
     public void execute(IGetContainerServiceInfoCommandData context) {
         JobContext jobContext = context.getJobContext();
+        final Item owner = jobContext.getOwner();
         final FilePath workspace = jobContext.getWorkspace();
         final TaskListener taskListener = jobContext.getTaskListener();
-        final TokenCredentialData token = AzureHelper.getToken(context.getAzureCredentialsId());
+        final TokenCredentialData token = AzureHelper.getToken(owner, context.getAzureCredentialsId());
         final String resourceGroupName = context.getResourceGroupName();
         final String containerServiceName = context.getContainerServiceName();
         final String containerServiceType = context.getContainerServiceType();

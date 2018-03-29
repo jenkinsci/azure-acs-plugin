@@ -12,22 +12,24 @@ import com.microsoft.azure.util.AzureCredentialUtil;
 import com.microsoft.jenkins.acs.AzureACSPlugin;
 import com.microsoft.jenkins.azurecommons.core.AzureClientFactory;
 import com.microsoft.jenkins.azurecommons.core.credentials.TokenCredentialData;
+import hudson.model.Item;
 
 /**
  * Helper methods on the Azure related constructs.
  */
 public final class AzureHelper {
 
-    public static TokenCredentialData getToken(String credentialId) {
-        AzureBaseCredentials credential = AzureCredentialUtil.getCredential2(credentialId);
+    public static TokenCredentialData getToken(Item owner, String credentialId) {
+        AzureBaseCredentials credential = AzureCredentialUtil.getCredential(owner, credentialId);
         if (credential == null) {
-            throw new IllegalStateException("Can't find credential with id: " + credentialId);
+            throw new IllegalStateException(
+                    String.format("Can't find credential in scope %s with id: %s", owner, credentialId));
         }
         return TokenCredentialData.deserialize(credential.serializeToTokenData());
     }
 
-    public static Azure buildClient(String credentialId) {
-        TokenCredentialData token = getToken(credentialId);
+    public static Azure buildClient(Item owner, String credentialId) {
+        TokenCredentialData token = getToken(owner, credentialId);
         return buildClient(token);
     }
 

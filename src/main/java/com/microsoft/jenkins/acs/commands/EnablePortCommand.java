@@ -31,6 +31,7 @@ import com.microsoft.jenkins.azurecommons.command.ICommand;
 import com.microsoft.jenkins.azurecommons.core.credentials.TokenCredentialData;
 import hudson.EnvVars;
 import hudson.FilePath;
+import hudson.model.Item;
 import hudson.model.TaskListener;
 import jenkins.security.MasterToSlaveCallable;
 
@@ -57,6 +58,7 @@ public class EnablePortCommand implements ICommand<EnablePortCommand.IEnablePort
     @Override
     public void execute(IEnablePortCommandData context) {
         JobContext jobContext = context.getJobContext();
+        final Item owner = jobContext.getOwner();
         final FilePath workspace = jobContext.getWorkspace();
         final TaskListener taskListener = jobContext.getTaskListener();
         final EnvVars envVars = context.getEnvVars();
@@ -66,7 +68,7 @@ public class EnablePortCommand implements ICommand<EnablePortCommand.IEnablePort
         final String resourceGroupName = context.getResourceGroupName();
 
         try {
-            final TokenCredentialData token = AzureHelper.getToken(azureCredentialsId);
+            final TokenCredentialData token = AzureHelper.getToken(owner, azureCredentialsId);
             CommandState state = workspace.act(new MasterToSlaveCallable<CommandState, Exception>() {
                 @Override
                 public CommandState call() throws Exception {
