@@ -216,6 +216,12 @@
             <groupId>org.jenkins-ci.plugins</groupId>
             <artifactId>kubernetes-cd</artifactId>
             <version>${kubernetes-cd.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.sundr</groupId>
+                    <artifactId>builder-annotations</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
