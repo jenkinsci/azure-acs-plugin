@@ -27,7 +27,7 @@ import hudson.Util;
 import hudson.model.Item;
 import hudson.model.TaskListener;
 import hudson.util.VariableResolver;
-import io.kubernetes.client.ApiClient;
+import io.kubernetes.client.openapi.ApiClient;
 import jenkins.security.MasterToSlaveCallable;
 import org.apache.commons.lang.StringUtils;
 

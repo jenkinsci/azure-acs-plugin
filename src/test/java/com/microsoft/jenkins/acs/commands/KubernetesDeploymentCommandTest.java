@@ -7,7 +7,7 @@
 package com.microsoft.jenkins.acs.commands;
 
 import com.microsoft.jenkins.kubernetes.wrapper.KubernetesClientWrapper;
-import io.kubernetes.client.ApiClient;
+import io.kubernetes.client.openapi.ApiClient;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
