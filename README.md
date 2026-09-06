@@ -1,6 +1,6 @@
 # Azure Container Service (AKS) Plugin
 
-> ***Important***: This plugin is being retired and will be out of support as of February 29, 2024. Azure CLI is the currently recommended way to integrate Jenkins with Azure services. Refer to [Tutorial: Deploy from GitHub to Azure Kubernetes Service using Jenkins](https://docs.microsoft.com/en-us/azure/developer/jenkins/deploy-from-github-to-aks?toc=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fdeveloper%2Fjenkins%2Ftoc.json&bc=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fdeveloper%2Fbreadcrumb%2Ftoc.json) for more details.
+> ***Important***: This plugin is deprecated and out of support as of February 29, 2024. Azure CLI is the currently recommended way to integrate Jenkins with Azure services. Refer to [Tutorial: Deploy from GitHub to Azure Kubernetes Service using Jenkins](https://docs.microsoft.com/en-us/azure/developer/jenkins/deploy-from-github-to-aks?toc=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fdeveloper%2Fjenkins%2Ftoc.json&bc=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Fazure%2Fdeveloper%2Fbreadcrumb%2Ftoc.json) for more details.
 
 ---
 
