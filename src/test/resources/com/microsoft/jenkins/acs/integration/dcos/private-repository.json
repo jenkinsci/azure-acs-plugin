@@ -1,0 +1,30 @@
+{
+  "id": "acs-test-private-repository",
+  "cmd": null,
+  "cpus": 0.1,
+  "mem": 128,
+  "disk": 0,
+  "instances": 1,
+  "container": {
+    "docker": {
+      "image": "$ACS_TEST_DOCKER_REPOSITORY/acs-test-private",
+      "network": "BRIDGE",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 82,
+          "protocol": "tcp",
+          "name": "p80-82",
+          "labels": null
+        }
+      ]
+    },
+    "type": "DOCKER"
+  },
+  "acceptedResourceRoles": [
+    "slave_public"
+  ],
+  "uris": [
+    "$MARATHON_DOCKER_CFG_ARCHIVE_URI"
+  ]
+}

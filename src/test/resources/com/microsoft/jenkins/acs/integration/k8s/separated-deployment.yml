@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: separated-nginx-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: separated-nginx
+    spec:
+      containers:
+      - name: separated-nginx-container
+        image: nginx
+        ports:
+        - containerPort: 80

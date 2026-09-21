@@ -296,8 +296,7 @@ public class MarathonDeploymentCommand
 
     @VisibleForTesting
     static String nameForBuild(JobContext jobContext) {
-        String runName = StringUtils.trimToEmpty(
-                jobContext.getRun().getParent().getName() + jobContext.getRun().getDisplayName());
+        String runName = StringUtils.trimToEmpty(jobContext.getRun().getDisplayName());
         if (StringUtils.isBlank(runName)) {
             runName = UUID.randomUUID().toString();
         }

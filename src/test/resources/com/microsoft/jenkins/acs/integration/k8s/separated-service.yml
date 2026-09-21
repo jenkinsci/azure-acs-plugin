@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: separated-nginx-service
+  labels:
+    app: separated-nginx
+spec:
+  type: LoadBalancer
+  selector:
+    app: separated-nginx
+  ports:
+    - port: 80
+      targetPort: 80

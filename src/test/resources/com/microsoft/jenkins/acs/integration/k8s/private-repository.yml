@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: private-repository
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: private-repository-app
+    spec:
+      containers:
+      - name: private-repository-container
+        image: $ACS_TEST_DOCKER_REPOSITORY/$IMAGE_NAME
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: $KUBERNETES_SECRET_NAME

@@ -1,0 +1,7 @@
+version: '2'
+services:
+  acs_test_private_repository:
+    image: $ACS_TEST_DOCKER_REPOSITORY/acs-test-private
+    container_name: acs-test-private-repository
+    ports:
+    - "82:80"

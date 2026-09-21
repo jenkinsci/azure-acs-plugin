@@ -1,0 +1,7 @@
+version: '2'
+services:
+  acs_test_direct:
+    image: nginx
+    container_name: acs-test-direct
+    ports:
+    - "81:80"

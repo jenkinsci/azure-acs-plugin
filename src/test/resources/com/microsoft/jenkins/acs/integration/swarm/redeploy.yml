@@ -1,0 +1,7 @@
+version: '2'
+services:
+  acs_test_redeploy:
+    image: nginx
+    container_name: acs-test-redeploy
+    ports:
+    - "83:80"

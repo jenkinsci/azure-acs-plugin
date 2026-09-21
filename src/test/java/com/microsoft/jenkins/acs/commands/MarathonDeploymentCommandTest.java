@@ -128,10 +128,9 @@ public class MarathonDeploymentCommandTest {
 
     @Test
     public void testNameForBuild() {
-        assertEquals("acs-plugin-dcos-abcdef", nameForBuild(jobContext("abc", "def")));
-        assertEquals("acs-plugin-dcos-abc", nameForBuild(jobContext("abc", "")));
+        assertEquals("acs-plugin-dcos-def", nameForBuild(jobContext("abc", "def")));
         assertEquals("acs-plugin-dcos-def", nameForBuild(jobContext("", "def")));
-        assertEquals("acs-plugin-dcos-a-cde-", nameForBuild(jobContext("a.c", "de/")));
+        assertEquals("acs-plugin-dcos-de-", nameForBuild(jobContext("a.c", "de/")));
         String name = nameForBuild(jobContext("", ""));
         String prefix = "acs-plugin-dcos-";
         assertTrue(name.length() > prefix.length());
